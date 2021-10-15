@@ -1,5 +1,11 @@
 <template>
-  <Tutorial/>
+<div>
+<div class="container">
+    sdsd
+</div>
+   
+</div>
+
 </template>
 
 <script>

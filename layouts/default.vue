@@ -49,11 +49,15 @@
             </div>
             <nuxt />
         </div>  
+    <Loading />
     </div>
 </template>
 
 <script>
+
 import Sidebar from '../components/Sidebar.vue'
+import Loading from '../components/Loading.vue'
+
     export default {
         methods:{
           showUserData() {
@@ -63,7 +67,11 @@ import Sidebar from '../components/Sidebar.vue'
 
         },
         components:{
-            Sidebar
+            Sidebar,
+            Loading
+           
+           
+            
         }
         
     }

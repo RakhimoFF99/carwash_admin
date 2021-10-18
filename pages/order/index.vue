@@ -1,11 +1,15 @@
 <template>
-<div class="px-4 py-4">
+ <div  class="wrapper px-4 py-4">
  <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Statistika</h4>
-                <div class="table-responsive">
+            <div class="d-flex justify-content-between px-2">
+             <h4 class="card-title my-0">Buyurtma</h4>
+             <button class="btn btn-primary mx-4 mb-2">Qo'shish</button>
+            </div>
+               
+                <div :class="table-responsive">
                     <table class="table table-centered table-nowrap mb-0">
                         <thead class="table-light">
                             <tr>
@@ -14,21 +18,20 @@
                                 <th>Ism</th>
                                 <th>Telefon</th>
                                 <th>Sana</th>
-                                <th>Narx</th>
-                                <th>Xizmat turi</th>
+                                
                                 <th>Status</th>
-                                <th>View Details</th>
+                                <th>Batafsil</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in order" :key="item._id">
+                            <tr v-for="item in user" :key="item._id">
                         
                                 <td>{{item.name}}</td>
                                 <td>
-                                   {{item.data}}
+                                   {{item.phone}}
                                 </td>
                                 <td>
-                                    {{item.price}}
+                                    {{dateFormat(item.createdAt)}}
                                 </td>
                                 <td>
                                     <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
@@ -37,7 +40,7 @@
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                        View Details
+                                    Batafsil
                                     </button>
                                 </td>
                             </tr>
@@ -51,28 +54,37 @@
     </div>
 </div>
 </div>
-  
 </template>
 
 <script>
+import dateformat from "dateformat";
     export default {
-        data : () => ({
-            order:null
+         data : () => ({
+            user:null
         }),
         methods:{
+              dateFormat(date) {
+            let date1 = dateformat(date, "isoDate");
+            date1 = date1.split("-").reverse();
+            date1 = date1.join(".");
+            return date1;
+        },
+
           async  getAllStatistics () {
-            const orders = await this.$axios.get('order/all')
-            if(orders) {
-                this.order = orders.data.data
-            }
+            const users = await this.$axios.get('user/all')
+       
+            if(users) {
+                this.user = users.data
+                }
+           
             }
         },
-        mounted() {
+        beforeMount() {
             this.getAllStatistics()
         }
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style  scoped>
+    
 </style>

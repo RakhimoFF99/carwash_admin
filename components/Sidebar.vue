@@ -19,7 +19,7 @@
                         </li>
 
                         <li v-ripple>
-                            <nuxt-link to="/users" active-class="text-primary">
+                            <nuxt-link to="/order" active-class="text-primary">
                                 <fa icon="users" class="text-white" />
                                 <span style="margin-left:5px">Foydalanuvchilar</span>
                             </nuxt-link>

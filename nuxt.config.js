@@ -1,10 +1,12 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr:false,
   head: {
     title: 'carwash-admin',
     htmlAttrs: {
       lang: 'en'
     },
+    
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -27,7 +29,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/vue-ripple.js'
+    '@/plugins/vue-ripple.js',
+    "@/plugins/axios",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

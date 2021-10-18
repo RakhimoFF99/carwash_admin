@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="container">
-    sdsd
+ 
 </div>
    
 </div>
@@ -9,5 +9,19 @@
 </template>
 
 <script>
-export default {}
+export default {
+    data:() => ({
+        
+    }),
+    methods:{
+        async getAllUser () {
+            const user = await this.$axios.$get('user/all')
+            console.log(user)
+        }
+    },
+    mounted() {
+        this.getAllUser()
+    }
+    
+}
 </script>

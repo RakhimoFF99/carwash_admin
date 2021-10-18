@@ -26,7 +26,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/vue-ripple.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,7 +35,25 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    "@nuxtjs/fontawesome"
   ],
+  axios: {
+    // baseURL: "http://e842a3dd150b.ngrok.io/api/",
+    baseURL: "http://localhost:5200/api/"
+    // baseURL: "http://ass.tujjor.org/api/",
+    // baseURL: 'http://media.huquqiyportal.uz/api',
+    // baseURL: "http://localhost:3301/api"
+},
+
+
+  fontawesome: {
+    component: "fa",
+    icons: {
+        solid: true,
+        brands: true
+    }
+},
+
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -42,8 +61,6 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

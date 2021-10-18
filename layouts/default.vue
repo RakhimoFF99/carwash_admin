@@ -1,82 +1,51 @@
 <template>
     <div class="layout d-flex">
-        <div class="sidebar">
-        <div class="sidebar__header">
-            <div class="logo text-center">Admin panel</div>
-        </div>
-        <div class="sidebar__body"></div>
-                      <div id="sidebar-menu">
-                    <ul class="metismenu list-unstyled" id="side-menu">
-                        <li v-ripple>
-                            <nuxt-link
-                                to="/"
-                                class="d-flex justify-content-between"
-                            >
-                                <span>
-                                    <i class="material-icons text-white">
-                                        dashboard
-                                    </i>
-                                    <span>Dashboard</span>
-                                </span>
-                            </nuxt-link>
-                        </li>
-
-                        <li v-ripple>
-                            <nuxt-link to="/users" active-class="text-primary">
-                                <i class="material-icons text-white">
-                                    people
-                                </i>
-                                <span>Foydalanuvchilar</span>
-                            </nuxt-link>
-                        </li>
-
-                        <li v-ripple>
-                            <nuxt-link
-                                to="/statistics"
-                                active-class="text-primary"
-                            >
-                                <i  class="material-icons text-white">
-                                    insert_chart
-                                </i>
-                                <span>Statistika</span>
-                            </nuxt-link>
-                        </li>
-                        <li>
-                            <a
-                                id="ul1"
-                                @click.passive="event => showSubMenu(event)"
-                                href="javascript: void(0);"
-                                v-ripple
-                                class="has-arrow text-white"
-                                >Bo'limlar</a
-                            >
-                            <ul
-                                ref="ul1"
-                                class="my-0 sub-menu mm-collapse mm-show"
-                            >
-                               
-                           
-
-                        <li v-ripple>
-                            <nuxt-link
-                                to="/news"
-                                active-class="text-primary"
-                            >
-                               <fa icon="" />
-                                <span>Yangiliklar</span>
-                            </nuxt-link>
-                        </li>
-                       
-                               
-                         
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-        </div>  
+            <sidebar />
         <div class="header">
             <div class="header__up">
-            sdsd
+             <div class="header-user account" >
+                        <div class="dropdown d-inline-block d-flex justify-content-end px-4">
+                            <button
+                                type="button"
+                                class="btn header-item waves-effect"
+                                id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <span
+                                    class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"
+                                    style="letter-spacing:1px;font-weight:500"
+                                    @click="showUserData"
+                                    >User</span
+                                >
+                                <i
+                                    class="uil-angle-down d-none d-xl-inline-block font-size-15"
+                                ></i>
+                            </button>
+                            <div
+                                ref="showUser"
+                                class="dropdown-menu dropdown-menu-end"
+                            >
+                                <a class="dropdown-item" href="#"
+                                    ><i
+                                        class="uil uil-user-circle font-size-18 align-middle text-muted me-1"
+                                    ></i>
+                                    <span class="align-middle">Profile</span></a
+                                >
+                                <a
+                                    
+                                    class="dropdown-item"
+                                    href="javascript: void(0);"
+                                    ><i
+                                        class="uil uil-wallet font-size-18 align-middle me-1 text-muted"
+                                    ></i>
+                                    <span class="align-middle">Chiqish</span></a
+                                >
+                            </div>
+                        </div>
+                        </div>
+
             </div>
             <nuxt />
         </div>  
@@ -84,13 +53,19 @@
 </template>
 
 <script>
+import Sidebar from '../components/Sidebar.vue'
     export default {
         methods:{
-            showSubMenu() {
-            this.$refs.ul1.classList.toggle("mm-show");
+          showUserData() {
+            this.$refs.showUser.classList.toggle("show");
         },
 
+
+        },
+        components:{
+            Sidebar
         }
+        
     }
 </script>
 
@@ -99,33 +74,14 @@
         min-height: 100vh;
         width: 100%; 
         }
-    .sidebar {
-        width:280px;
-        background-color: rgb(132, 132, 235);
-        color: white;
-        height: 100vh;
-         
-    }
-    .sidebar__header{
-        padding: 1rem 0 ;
-       
-    }
- 
-   li span {
-   color: white;
-   }
    
-  
- 
-    .logo {
-        font-size: 22px;
-    }
     .header {
         width: 100%;
+        
     }
     .header__up {
         width:100%;
-        border: 1px solid rgb(132, 132, 235);
+        box-shadow: -1px 24px 43px -5px rgba(123, 123, 163,0.1 );
         height: 70px;
     }
 </style>

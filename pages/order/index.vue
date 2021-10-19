@@ -36,14 +36,22 @@
                                     {{dateFormat(item.orderTime)}}
                                 </td>
                                 <td>
-                                    <span style="font-weight:600" class="badge rounded-pill bg-soft-success font-size-12 text-secondary">{{defineStatus(item.status)}}</span>
+                                    <span style="font-weight:600" class="badge rounded-pill bg-success font-size-12 ">{{defineStatus(item.status)}}</span>
                                 </td>
                                
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button style="background-color:rgb(64,158,255);font-weight:600" type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                    Batafsil
-                                    </button>
+                                    <div class="d-flex align-content-center">
+                                    <div class="d-inline  px-2 py-1 text-white" style="margin-left:10px; border-radius:10px;background-color:teal;cursor:pointer">
+                                        <fa icon="times" style="width:15px" />
+
+                                    </div>
+                                   
+                                    <div class="d-inline  px-2 py-1 text-white" style="margin-left:10px; border-radius:10px;background-color:rgb(64,158,255);cursor:pointer">
+                                        <fa icon="check" />
+
+                                    </div>
+                                     </div>
                                 </td>
                             </tr>
 
@@ -62,13 +70,26 @@
 import dateformat from "dateformat";
     export default {
          data : () => ({
-            user:null
+            user:null,
+            
         }),
         methods:{
               dateFormat(date) {
             let date1 = dateformat(date, "dd.mm.yyyy HH:MM:ss");
          
             return date1;
+        },
+
+
+        async completeOrder (id) {
+         const response = await this.$axios.$get(`/complete/order/${id}`)  
+         console.log(response)
+        },
+
+
+        async rejectOrder (id) {
+            const response = await this.$axios.$get(`/reject/order/${id}`)
+            console.log(response)
         },
 
           async  getAllStatistics () {
@@ -83,9 +104,18 @@ import dateformat from "dateformat";
                 if(status == 1) {
                     return "Buyurtma qabul qilindi"
                 }
+                else if (status == 2) {
+                    return "Buyurtma xaydovchi tomonidan bekor qilindi"
+                }
+                else if (status == 3 ) {
+                    return "Buyurtma avtomoyka tomonidan bekor qilindi"
+                }
+                else if (status === 4) {
+                    return "Buyurtma yakunlandi"
+                }
             }
         },
-        beforeMount() {
+        mounted() {
             this.getAllStatistics()
         }
     }

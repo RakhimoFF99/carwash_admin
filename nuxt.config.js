@@ -33,6 +33,7 @@ export default {
     '@/plugins/element-ui',
     '@/plugins/vue-ripple.js',
     "@/plugins/axios",
+    "@/plugins/vue-validate"
   ],
 
   toast: {
@@ -71,7 +72,36 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     "vue-toastification/nuxt",
+    "@nuxtjs/auth-next",
   ],
+  router: {
+    middleware: ["auth"]
+},
+auth: {
+    redirect: {
+        login: "/auth/login",
+        logout: "/auth/login",
+        callback: "/auth/login",
+        home: "/"
+    },
+    strategies: {
+        local: {
+            token: {
+                property: "token"
+            },
+            user: {
+                property: "data",
+               
+            },
+            endpoints: {
+                login: { url: "/login", method: "post" },
+                user: { url: "/get/user/me", method: "get" }
+            }
+        }
+    }
+},
+
+
 
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

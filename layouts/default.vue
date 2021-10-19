@@ -89,7 +89,9 @@ import Loading from '../components/Loading.vue'
     }
     .header__up {
         width:100%;
+        background-color: white;
         box-shadow: -1px 24px 43px -5px rgba(123, 123, 163,0.1 );
         height: 70px;
     }
+ 
 </style>

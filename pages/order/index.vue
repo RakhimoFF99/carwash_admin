@@ -4,9 +4,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-            <div class="d-flex justify-content-between px-2">
-             <h4 class="card-title my-0">Buyurtma</h4>
-             <button class="btn btn-primary mx-4 mb-2">Qo'shish</button>
+            <div class="d-flex justify-content-between ">
+             <h4 class="card-title ">Buyurtma</h4>
+        <nuxt-link class="text-white" to="/order/add"> <el-button type="primary mb-3 mx-4"> Qo'shish  </el-button></nuxt-link>
             </div>
                
                 <div :class="table-responsive">
@@ -25,21 +25,23 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in user" :key="item._id">
-                        
+
                                 <td>{{item.name}}</td>
                                 <td>
                                    {{item.phone}}
+                                       
+                                </td>
+                                    
+                                <td>
+                                    {{dateFormat(item.orderTime)}}
                                 </td>
                                 <td>
-                                    {{dateFormat(item.createdAt)}}
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
+                                    <span style="font-weight:600" class="badge rounded-pill bg-soft-success font-size-12 text-secondary">{{defineStatus(item.status)}}</span>
                                 </td>
                                
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
+                                    <button style="background-color:rgb(64,158,255);font-weight:600" type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
                                     Batafsil
                                     </button>
                                 </td>
@@ -64,19 +66,23 @@ import dateformat from "dateformat";
         }),
         methods:{
               dateFormat(date) {
-            let date1 = dateformat(date, "isoDate");
-            date1 = date1.split("-").reverse();
-            date1 = date1.join(".");
+            let date1 = dateformat(date, "dd.mm.yyyy HH:MM:ss");
+         
             return date1;
         },
 
           async  getAllStatistics () {
-            const users = await this.$axios.get('user/all')
+            const users = await this.$axios.get('order/all')
        
             if(users) {
-                this.user = users.data
+                this.user = users.data.data
                 }
            
+            },
+            defineStatus (status) {
+                if(status == 1) {
+                    return "Buyurtma qabul qilindi"
+                }
             }
         },
         beforeMount() {

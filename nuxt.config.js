@@ -23,7 +23,9 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '@/global/icon.css',
     '@/global/bootstrap.min.css',
-    '@/global/app.min.css'
+    '@/global/app.min.css',
+    '@/global/globalstyles.css'
+  
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -32,6 +34,12 @@ export default {
     '@/plugins/vue-ripple.js',
     "@/plugins/axios",
   ],
+
+  toast: {
+    timeout: 3000,
+    closeOnClick: false
+},
+
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -62,6 +70,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    "vue-toastification/nuxt",
   ],
 
 

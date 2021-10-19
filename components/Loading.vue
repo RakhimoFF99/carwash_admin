@@ -40,7 +40,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.87);
+   
     z-index: 10001;
     display: flex;
     align-items: center;

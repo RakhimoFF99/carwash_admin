@@ -12,7 +12,7 @@
                                 class="d-flex justify-content-between"
                             >
                                 <span>
-                                    <fa icon="users" />
+                                    <fa icon="chart-line" />
                                     <span style="margin-left:5px">Dashboard</span>
                                 </span>
                             </nuxt-link>
@@ -20,8 +20,8 @@
 
                         <li v-ripple>
                             <nuxt-link to="/order" active-class="text-primary">
-                                <fa icon="users" class="text-white" />
-                                <span style="margin-left:5px">Foydalanuvchilar</span>
+                                <fa icon="clipboard-list" class="text-white" />
+                                <span style="margin-left:5px">Buyurtmalar</span>
                             </nuxt-link>
                         </li>
 
@@ -85,9 +85,9 @@ export default {
 
  .sidebar {
         width:280px;
-        background-color: rgb(123, 123, 163);
+        background-color: rgb(64,158,255);
         color: white;
-        height: 100vh;
+        min-height: 100vh;
          
     }
     .sidebar__header{

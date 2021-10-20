@@ -13,10 +13,11 @@
               >
             </div>
 
-            <div :class="table - responsive">
+            <div class="table-responsive">
               <table class="table table-centered table-nowrap mb-0">
                 <thead class="table-light">
                   <tr>
+                
                     <th>Ism</th>
                     <th>Telefon</th>
                     <th>Sana</th>
@@ -26,6 +27,7 @@
                 </thead>
                 <tbody>
                   <tr v-for="item in user" :key="item._id">
+                
                     <td>{{ item.name }}</td>
                     <td>
                       {{ item.phone }}
@@ -87,6 +89,8 @@ import dateformat from "dateformat";
 export default {
   data: () => ({
     user: null,
+    polling:null
+  
   }),
   methods: {
     dateFormat(date) {
@@ -94,6 +98,11 @@ export default {
 
       return date1;
     },
+      pollingData () {
+         this.polling =  setInterval(() => {
+      console.log(1)
+    },20000)
+      },
 
     async completeOrder(id) {
         console.log('confirm')
@@ -104,11 +113,11 @@ export default {
     },
 
     async getAllStatistics() {
-      const users = await this.$axios.get("order/all");
-
+      const users = await this.$axios.get(`wash/${this.$auth.user._id}`);
       if (users) {
-        this.user = users.data.data;
+        this.user = users.data.data
       }
+     
     },
     defineStatus(status) {
       if (status == 1) {
@@ -122,9 +131,15 @@ export default {
       }
     },
   },
+  created(){
+    this.pollingData()
+  },
   mounted() {
     this.getAllStatistics();
   },
+  beforeDestroy() {
+    clearInterval(this.polling)
+  }
 };
 </script>
 

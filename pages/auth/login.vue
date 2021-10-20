@@ -1,6 +1,6 @@
 <template>
   <div class="authentication-bg">
-    <div class="account-pages  pt-sm-5">
+    <div class="account-pages pt-sm-5">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -34,9 +34,7 @@
                         name="email"
                         placeholder="Loginni kiriting"
                         v-model.trim="login.phone"
-                    
                       />
-               
                     </div>
 
                     <div class="mb-1">
@@ -51,18 +49,9 @@
                       />
                     </div>
 
-                  
-
-                    
-
                     <div class="mt-3 d-flex flex-row-reverse">
-                      <button
-                        @click="loginUser"
-                        class="btn btn-primary w-sm waves-effect waves-light"
-                        type="button"
-                      >
-                        Kirish
-                      </button>
+                      <el-button type="primary mb-3 mx-4"  @click="loginUser"> Kirish </el-button>
+                     
                     </div>
                   </form>
                 </div>
@@ -83,7 +72,6 @@
 import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
-
   layout: "authLayout",
   head() {
     return {
@@ -93,48 +81,39 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: "My custom description"
-        }
-      ]
+          content: "My custom description",
+        },
+      ],
     };
   },
   data() {
     return {
       login: {
         phone: "",
-        password: ""
+        password: "",
       },
-  
     };
   },
- 
- 
 
-  async mounted() {
-  
-  },
+  async mounted() {},
   methods: {
-
     async loginUser() {
-        try {
-          let response = await this.$auth.loginWith("local", {
-            data: this.login
-          });
+      try {
+        let response = await this.$auth.loginWith("local", {
+          data: this.login,
+        });
 
-          let user = this.$auth.user;
-  
-          if (user.type == "user") {
-            this.$auth.logout();
-          }
+        let user = this.$auth.user;
 
-        
-        } catch (err) {
-          console.log(err)
-          this.$toast.error("Login yoki parol noto'gri");
+        if (user.type == "user") {
+          this.$auth.logout();
         }
-      
-    }
-  }
+      } catch (err) {
+        console.log(err);
+        this.$toast.error("Login yoki parol noto'gri");
+      }
+    },
+  },
 };
 </script>
 
@@ -146,8 +125,5 @@ body {
 .authentication-bg {
   min-height: 100vh;
   background-color: rgba(91, 140, 232, 0.25);
-}
-.btn-primary {
-  color: #fff !important;
 }
 </style>

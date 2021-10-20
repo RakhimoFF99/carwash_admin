@@ -1,8 +1,11 @@
 export default function(context) {
-    let user = this.$auth.user.role;
-    console.log(user)
+    if(this.$auth.user.role){
+        
 
-    if (user != "admin") {
+   let user = this.$auth.user.role
+  
+     if (user !== "admin") {
         return context.redirect("/");
     }
+}
 }

@@ -9,7 +9,6 @@
                     <table class="table table-centered table-nowrap mb-0">
                         <thead class="table-light">
                             <tr>
-                               
             
                                 <th>Ism</th>
                                 <th>Telefon</th>
@@ -68,7 +67,7 @@
             }
         },
         mounted() {
-            this.getAllStatistics()
+     
         }
     }
 </script>

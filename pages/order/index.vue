@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <h4 class="card-title">Buyurtma</h4>
+              <h4 class="card-title">Buyurtmalar</h4>
               <nuxt-link class="text-white" to="/order/add">
                 <el-button type="primary mb-3 mx-4">
                   Qo'shish
@@ -39,7 +39,7 @@
                     <td>
                       <span
                         style="font-weight: 600"
-                        class="badge rounded-pill bg-success font-size-12"
+                        class="badge rounded-pill bg-warning font-size-12"
                         >{{ defineStatus(item.status) }}</span
                       >
               
@@ -116,7 +116,7 @@ export default {
     }
     catch(e) {
 ``
-      this.$toast.error(e.message)
+      this.$toast.error("Buyurtma xolati avval o'zgartirilgan")
     }
     
     
@@ -135,7 +135,7 @@ export default {
       }
     }
     catch(e) {
-      this.$toast.error(e.message)
+      this.$toast.error("Buyurtma xolati avval o'zgartirilgan")
     }
     
     },

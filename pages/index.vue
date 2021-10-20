@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Statistika</h4>
+                <h4 class="card-title mb-4">Avto moykalar</h4>
                 <div class="table-responsive">
                     <table class="table table-centered table-nowrap mb-0">
                         <thead class="table-light">
@@ -13,10 +13,7 @@
                                 <th>Ism</th>
                                 <th>Telefon</th>
                                 <th>Sana</th>
-                                <th>Narx</th>
-                                <th>Xizmat turi</th>
                                 <th>Status</th>
-                                <th>View Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,18 +24,13 @@
                                    {{item.phone}}
                                 </td>
                                 <td>
-                                    {{item.date}}
+                                    {{dateFormat(item.createdAt)}}
                                 </td>
                                 <td>
-                                    <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
+                                   <el-switch v-model="switchBtn"> </el-switch>
                                 </td>
                                
-                                <td>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                        View Details
-                                    </button>
-                                </td>
+                               
                             </tr>
 
                         </tbody>
@@ -55,9 +47,11 @@
 </template>
 
 <script>
+import dateformat from "dateformat";
 export default {
     data:() => ({
-    wash:null
+    wash:null,
+    switchBtn:false
     }),
     methods:{
         async getAllUser () {
@@ -65,8 +59,12 @@ export default {
       if (wash) {
         this.wash = wash.data.data
       }
-      console.log(this.wash)
-        }
+
+        },
+         dateFormat(date) {
+      let date1 = dateformat(date, "dd.mm.yyyy HH:MM:ss");
+      return date1;
+    },
     },
     mounted() {
        this.getAllUser()

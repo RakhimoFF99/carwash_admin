@@ -12,8 +12,8 @@
                                 class="d-flex justify-content-between"
                             >
                                 <span>
-                                    <fa icon="chart-line" />
-                                    <span style="margin-left:5px">Dashboard</span>
+                                    <fa icon="car" />
+                                    <span style="margin-left:5px">Avto moykalar</span>
                                 </span>
                             </nuxt-link>
                         </li>
@@ -102,8 +102,8 @@ export default {
   
  
     .logo {
-        font-size: 22px;
+        font-size: 20px;
     }
- 
+   
  
 </style>

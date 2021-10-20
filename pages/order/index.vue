@@ -16,18 +16,20 @@
             <div class="table-responsive">
               <table class="table table-centered table-nowrap mb-0">
                 <thead class="table-light">
-                  <tr>
-                
+                  <tr style="font-size:12px">
+                    <th>№</th>
                     <th>Ism</th>
                     <th>Telefon</th>
                     <th>Sana</th>
+                    <th>Xizmat turi</th>
                     <th>Status</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in user" :key="item._id">
-                
+                  <tr v-for="(item,i) in user" :key="item._id">
+                    <td>{{i + 1}}</td>
+                 
                     <td>{{ item.name }}</td>
                     <td>
                       {{ item.phone }}
@@ -36,10 +38,11 @@
                     <td>
                       {{ dateFormat(item.orderTime) }}
                     </td>
+                    <td >{{item.serviceType}}</td>
                     <td>
                       <span
-                        style="font-weight: 600"
-                        class="badge rounded-pill bg-warning font-size-12"
+                        style="font-weight: 600;font-size:11px"
+                        :class="setStatusColor(item.status)"
                         >{{ defineStatus(item.status) }}</span
                       >
               
@@ -55,7 +58,7 @@
                          
                           title="Buyurtmani bekor qilasizmi ?"
                         >
-                          <el-button slot="reference">
+                          <el-button class="btn-sm" slot="reference">
                             <fa icon="times" />
                           </el-button>
                         </el-popconfirm>
@@ -67,7 +70,7 @@
                           style="margin-left: 10px"
                         
                         >
-                          <el-button slot="reference">
+                          <el-button class="btn-sm" slot="reference">
                             <fa icon="check" />
                           </el-button>
                         </el-popconfirm>
@@ -158,6 +161,20 @@ export default {
         return "Buyurtma yakunlangan";
       }
     },
+    setStatusColor (status) {
+        if(status == 1) {
+          return "badge rounded-pill bg-info"
+        }
+        if(status == 2) {
+          return "badge rounded-pill bg-warning"
+        }
+        if(status == 3) {
+          return "badge rounded-pill bg-danger"
+        }
+        if(status == 4) {
+          return "badge rounded-pill bg-secondary"
+        }
+    }
   },
   created(){
     this.pollingData()
@@ -172,4 +189,9 @@ export default {
 </script>
 
 <style  scoped>
+td {
+  font-size: 12px;
+  padding: 10px;
+}
+
 </style>

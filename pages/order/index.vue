@@ -42,6 +42,7 @@
                         class="badge rounded-pill bg-success font-size-12"
                         >{{ defineStatus(item.status) }}</span
                       >
+              
                     </td>
 
                     <td>
@@ -50,7 +51,7 @@
                         <el-popconfirm
                           confirm-button-text="Xa"
                           cancel-button-text="Yo'q"
-                          @confirm="rejectOrder"
+                          @confirm="rejectOrder(item._id)"
                          
                           title="Buyurtmani bekor qilasizmi ?"
                         >
@@ -60,7 +61,7 @@
                         </el-popconfirm>
                         <el-popconfirm
                           confirm-button-text="Xa"
-                          @confirm="completeOrder"
+                          @confirm="completeOrder(item._id)"
                           cancel-button-text="Yo'q"
                           title="Buyurtmani yakunlaysizmi ?"
                           style="margin-left: 10px"
@@ -105,15 +106,42 @@ export default {
       },
 
     async completeOrder(id) {
-        console.log('confirm')
+    try {
+      const response = await this.$axios.$post(`/complete/order/${id}`)
+      console.log(response)
+      if(response.success) {
+        this.$toast.success("Buyurtma mufaqqiyatli yakunlandi")
+        this.getAllStatistics()
+      }
+    }
+    catch(e) {
+``
+      this.$toast.error(e.message)
+    }
+    
+    
     },
 
     async rejectOrder(id) {
-            console.log('reject')
+         try {
+      const response = await this.$axios.$post(`/reject/order/${id}`)
+      console.log(response)
+      if(response.success) {
+        this.$toast.success("Buyurtma bekor qilindi")
+        this.getAllStatistics()
+      }
+      else {
+             this.$toast.error(response.message)
+      }
+    }
+    catch(e) {
+      this.$toast.error(e.message)
+    }
+    
     },
 
     async getAllStatistics() {
-      const users = await this.$axios.get(`wash/${this.$auth.user._id}`);
+      const users = await this.$axios.get(`order/all`);
       if (users) {
         this.user = users.data.data
       }

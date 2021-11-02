@@ -17,7 +17,7 @@
                                     class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"
                                     style="letter-spacing:1px;font-weight:500"
                                     @click="showUserData"
-                                    >{{$auth.user.name}}</span
+                                    ></span
                                 >
                                 <i
                                     class="uil-angle-down d-none d-xl-inline-block font-size-15"

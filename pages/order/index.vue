@@ -99,7 +99,6 @@ export default {
   methods: {
     dateFormat(date) {
       let date1 = dateformat(date, "dd.mm.yyyy HH:MM:ss");
-
       return date1;
     },
       pollingData () {
